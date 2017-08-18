@@ -21,101 +21,173 @@ describe('Parse.number', () => {
     });
 
     it('().value.resolved() should return NaN', () => {
-      const expected = parser()().value.resolved();
-      expect(isNaN(expected)).toBe(true);
+      const promise = parser()();
+      expect(isNaN(promise.value())).toBe(true);
+      expect(isNaN(promise.value.resolved())).toBe(true);
+    });
+
+    it('("").value.resolved() should return NaN', () => {
+      const promise = parser()("");
+      expect(isNaN(promise.value())).toBe(true);
+      expect(isNaN(promise.value.resolved())).toBe(true);
+    });
+
+    it('(0).value.resolved() should return 0', () => {
+      const promise = parser()(0);
+      expect(promise.value()).toBe(0);
+      expect(promise.value.resolved()).toBe(0);
     });
 
     it('("-123").value.resolved() should return -123', () => {
-      const expected = parser()("123").value.resolved();
-      expect(expected).toBe(-123);
+      const promise = parser()("-123");
+      expect(promise.value()).toBe(-123);
+      expect(promise.value.resolved()).toBe(-123);
     });
 
     it('("xyz").value.rejected() should return "Invalid"', () => {
-      const expected = parser()('xyz').value.rejected();
-      expect(expected).toBe('Invalid');
+      const promise = parser()('xyz');
+      expect(promise.value()).toBe('Invalid');
+      expect(promise.value.rejected()).toBe('Invalid');
     });
 
+    it('(-12345.67).value.resolved() should return -12345.67', () => {
+      const promise = parser()(-12345.67);
+      expect(promise.value()).toBe(-12345.67);
+      expect(promise.value.resolved()).toBe(-12345.67);
+    })
+
     it('("$12,345.67").value.resolved() should return 12345.67', () => {
-      const expected = parser()("$12,345.67").value.resolved();
-      expect(expected).toBe(12345.67);
+      const promise = parser()("$12,345.67");
+      expect(promise.value()).toBe(12345.67);
+      expect(promise.value.resolved()).toBe(12345.67);
     });
+
+    it('("The first few digits of Pi are 3.1415!")', () => {
+      const promise = parser()("The first few digits of Pi are 3.1415!");
+      expect(promise.value()).toBe(3.1415);
+      expect(promise.value.resolved()).toBe(3.1415);
+    })
   });
 
   describe('({ required: true })', () => {
     it('().value.rejected() should return "Required"', () => {
-      const expected = parser({ required: true })().value.rejected();
-      expect(expected).toBe('Required');
+      const promise = parser({ required: true })();
+      expect(promise.value()).toBe('Required');
+      expect(promise.value.rejected()).toBe('Required');
+    });
+
+    it('("").value.rejected() should return "Required"', () => {
+      const promise = parser({ required: true })("");
+      expect(promise.value()).toBe('Required');
+      expect(promise.value.rejected()).toBe('Required');
+    });
+
+    it('(0).value.resolved() should return 0', () => {
+      const promise = parser({ required: true })(0);
+      expect(promise.value()).toBe(0);
+      expect(promise.value.resolved()).toBe(0);
     });
 
     it('(".123").value.resolved() should return 0.123', () => {
-      const expected = parser({ required: true })('.123').value.resolved();
-      expect(expected).toBe(0.123);
+      const promise = parser({ required: true })('.123');
+      expect(promise.value()).toBe(0.123);
+      expect(promise.value.resolved()).toBe(0.123);
     });
 
     it('("abc").value.rejected() should return "Invalid"', () => {
-      const expected = parser({ required: true })("abc").value.rejected();
-      expect(expected).toBe('Invalid');
+      const promise = parser({ required: true })("abc");
+      expect(promise.value()).toBe('Invalid');
+      expect(promise.value.rejected()).toBe('Invalid');
     });
   });
 
   describe('({ min: 0 })', () => {
     it('("-0.001").value.rejected() should return "Too Low"', () => {
-      const expected = parser({ min: 0 })("-0.001").value.rejected();
-      expect(expected).toBe("Too Low");
+      const promise = parser({ min: 0 })("-0.001");
+      expect(promise.value()).toBe("Too Low");
+      expect(promise.value.rejected()).toBe("Too Low");
     });
 
     it('("+0.001").value.resolved() should return 0.001', () => {
-      const expected = parser({ min: 0 })("+0.001").value.resolved();
-      expect(expected).toBe(0.001);
+      const promise = parser({ min: 0 })("+0.001");
+      expect(promise.value()).toBe(0.001);
+      expect(promise.value.resolved()).toBe(0.001);
     });
 
     it('(0).value.resolved() should return 0', () => {
-      const expected = parser({ min: 0 })(0).value.resolved();
-      expect(expected).toBe(0);
+      const promise = parser({ min: 0 })(0);
+      expect(promise.value()).toBe(0);
+      expect(promise.value.resolved()).toBe(0);
+    });
+
+    it('().value.resolved() should return NaN', () => {
+      const promise = parser({ min: 0 })();
+      expect(isNaN(promise.value())).toBe(true);
+      expect(isNaN(promise.value.resolved())).toBe(true);
     });
   });
 
   describe('({ max: 0 })', () => {
     it('("-0.001").value.resolved() should return -0.001', () => {
-      const expected = parser({ max: 0 })("-0.001").value.resolved();
-      expect(expected).toBe(-0.001);
+      const promise = parser({ max: 0 })("-0.001");
+      expect(promise.value()).toBe(-0.001);
+      expect(promise.value.resolved()).toBe(-0.001);
     });
 
     it('("+0.001").value.rejected() should return "Too High"', () => {
-      const expected = parser({ max: 0 })("+0.001").value.rejected();
-      expect(expected).toBe('Too High');
+      const promise = parser({ max: 0 })("+0.001");
+      expect(promise.value()).toBe('Too High');
+      expect(promise.value.rejected()).toBe('Too High');
     });
 
     it('(0).value.resolved() should return 0', () => {
-      const expected = parser({ max: 0 })(0).value.resolved();
-      expect(expected).toBe(0);
+      const promise = parser({ max: 0 })(0);
+      expect(promise.value()).toBe(0);
+      expect(promise.value.resolved()).toBe(0);
+    });
+
+    it('().value.resolved() should return NaN', () => {
+      const promise = parser({ max: 0 })();
+      expect(isNaN(promise.value())).toBe(true);
+      expect(isNaN(promise.value.resolved())).toBe(true);
     });
   });
 
   describe('({ required: true, min: 10, max: 15 })', () => {
     it('().value.rejected() should return "Required"', () => {
-      const expected = parser({ required: true, min: 10, max: 15 })().value.rejected();
-      expect(expected).toBe("Required");
+      const promise = parser({ required: true, min: 10, max: 15 })();
+      expect(promise.value()).toBe("Required");
+      expect(promise.value.rejected()).toBe("Required");
+    });
+
+    it('("0").value.rejected() should return "Too Low"', () => {
+      const promise = parser({ required: true, min: 10, max: 15 })("0");
+      expect(promise.value()).toBe("Too Low");
+      expect(promise.value.rejected()).toBe("Too Low");
     });
 
     it('("?9.876?").value.rejected() should return "Too Low"', () => {
-      const expected = parser({ required: true, min: 10, max: 15 })("?9.876?").value.rejected();
-      expect(expected).toBe("Too Low");
+      const promise = parser({ required: true, min: 10, max: 15 })("?9.876?");
+      expect(promise.value()).toBe("Too Low");
+      expect(promise.value.rejected()).toBe("Too Low");
     });
 
     it('("?15.341?").value.rejected() should return "Too High"', () => {
-      const expected = parser({ required: true, min: 10, max: 15 })("?15.341?").value.rejected();
-      expect(expected).toBe("Too High");
+      const promise = parser({ required: true, min: 10, max: 15 })("?15.341?");
+      expect(promise.value()).toBe("Too High");
+      expect(promise.value.rejected()).toBe("Too High");
     });
 
     it('("??").value.rejected() should return "Invalid"', () => {
-      const expected = parser({ required: true, min: 10, max: 15 })("??").value.rejected();
-      expect(expected).toBe("Invalid");
+      const promise = parser({ required: true, min: 10, max: 15 })("??");
+      expect(promise.value()).toBe("Invalid");
+      expect(promise.value.rejected()).toBe("Invalid");
     });
 
     it('("?12.752?").value.resolved() should return 12.752', () => {
-      const expected = parser({ required: true, min: 10, max: 15 })("?12.752?").value.resolved();
-      expect(expected).toBe(12.752);
+      const promise = parser({ required: true, min: 10, max: 15 })("?12.752?");
+      expect(promise.value()).toBe(12.752);
+      expect(promise.value.resolved()).toBe(12.752);
     });
   });
 });
