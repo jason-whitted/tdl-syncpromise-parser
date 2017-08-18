@@ -6,6 +6,7 @@
 !src/__tests__
 !src/__tests__/*.js
 !src/index.js
+!src/SyncPromise.js
 !.babelrc
 !.gitignore
 !package.json
