@@ -11,31 +11,31 @@ describe('Parse.number', () => {
   });
 
   describe('()', () => {
-    it('() should return a function', () => {
+    it('should return a function', () => {
       expect(parser()).toBeA(Function);
     });
 
-    it('()() should return a SyncPromise', () => {
+    it('() should return a SyncPromise', () => {
       const promise = parser()();
       expect(promise).toBeA(SyncPromise);
     });
 
-    it('()().value.resolved() should return NaN', () => {
+    it('().value.resolved() should return NaN', () => {
       const expected = parser()().value.resolved();
       expect(isNaN(expected)).toBe(true);
     });
 
-    it('()("-123").value.resolved() should return -123', () => {
+    it('("-123").value.resolved() should return -123', () => {
       const expected = parser()("123").value.resolved();
       expect(expected).toBe(-123);
     });
 
-    it('()("xyz").value.rejected() should return "Invalid"', () => {
+    it('("xyz").value.rejected() should return "Invalid"', () => {
       const expected = parser()('xyz').value.rejected();
       expect(expected).toBe('Invalid');
     });
 
-    it('()("$12,345.67").value.resolved() should return 12345.67', () => {
+    it('("$12,345.67").value.resolved() should return 12345.67', () => {
       const expected = parser()("$12,345.67").value.resolved();
       expect(expected).toBe(12345.67);
     });
