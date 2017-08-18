@@ -1,0 +1,12 @@
+**/*
+!docs
+!docs/*.md
+!src
+!src/index.js
+!src/__tests__
+!src/__tests__/*.js
+!src/index.js
+!.babelrc
+!.gitignore
+!package.json
+!README.md
