@@ -9,17 +9,17 @@ const tryRequire = path => {
 
 describe("Files", () => {
   it("src/Parse.number.js should be a file", () => {
-    const { module, error } = tryRequire('../Parse.number');
-    assert(!error, "File does not exist");
+    const { module, error } = tryRequire('../Parse.number.js');
+    assert(!error, `${error}`.replace('../', 'src/'));
   });
 
   it("src/Parse.string.js should be a file", () => {
-    const { module, error } = tryRequire('../Parse.string');
-    assert(!error, "File does not exist");
+    const { module, error } = tryRequire('../Parse.string.js');
+    assert(!error, `${error}`.replace('../', 'src/'));
   });
 
   it("src/createExecutionPlan.js should be a file", () => {
-    const { module, error } = tryRequire('../createExecutionPlan');
-    assert(!error, "File does not exist");
+    const { module, error } = tryRequire('../createExecutionPlan.js');
+    assert(!error, `${error}`.replace('../', 'src/'));
   });
 });

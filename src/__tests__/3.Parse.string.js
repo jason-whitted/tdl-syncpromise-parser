@@ -1,4 +1,5 @@
 import expect, { spyOn } from 'expect';
+import { SyncPromise } from 'data-tada';
 
 let parser;
 try { parser = require('../Parse.string').default; }
@@ -46,7 +47,7 @@ describe('Parse.string', () => {
     });
 
     it('("bueno").value.rejected() should return "bueno"', () => {
-      const promise = parser({ required: true })();
+      const promise = parser({ required: true })("bueno");
       expect(promise.value()).toBe("bueno");
       expect(promise.value.resolved()).toBe("bueno");
     });
