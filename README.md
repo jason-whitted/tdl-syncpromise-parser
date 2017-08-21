@@ -1,5 +1,5 @@
 # Test-Driven Learning: SyncPromise Parser
-_This exercise builds upon [tdl-syncpromise](https://github.com/jason-whitted/tdl-syncpromise)._
+_This exercise builds upon [Test-Driven Learning: SyncPromise](https://github.com/jason-whitted/tdl-syncpromise)._
 
 A thorough set of unit tests have been created for you.  Now you just need to make them pass!
 

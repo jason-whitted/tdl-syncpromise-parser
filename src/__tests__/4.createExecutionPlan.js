@@ -18,7 +18,13 @@ describe('createExecutionPlan', () => {
 
     it('should throw an error if no executor is provided', () => {
       expect(() => createExecutionPlan()).toThrow();
+    });
+
+    it('should throw an error if a string is provided as the executor', () => {
       expect(() => createExecutionPlan("abc")).toThrow();
+    });
+
+    it('should throw an error if an number is provided as the executor', () => {
       expect(() => createExecutionPlan(123)).toThrow();
     });
 
@@ -79,7 +85,13 @@ describe('createExecutionPlan', () => {
   describe('then', () => {
     it('should throw an error if an onResolved function is NOT supplied', () => {
       expect(() => createExecutionPlan(value => resolve(value)).then()).toThrow();
+    });
+
+    it('should throw an error if a string is supplied as an onResolved function', () => {
       expect(() => createExecutionPlan(value => resolve(value)).then("abc")).toThrow();
+    });
+
+    it('should throw an error if a number is supplied as an onResolved function', () => {
       expect(() => createExecutionPlan(value => resolve(value)).then(123)).toThrow();
     });
 
@@ -101,7 +113,13 @@ describe('createExecutionPlan', () => {
   describe('catch', () => {
     it('should throw an error if an onRejected function is NOT supplied', () => {
       expect(() => createExecutionPlan(value => resolve(value)).catch()).toThrow();
+    });
+
+    it('should throw an error if a string is supplied as an onRejected function', () => {
       expect(() => createExecutionPlan(value => resolve(value)).catch("abc")).toThrow();
+    });
+
+    it('should throw an error if a number is supplied as an onRejected function', () => {
       expect(() => createExecutionPlan(value => resolve(value)).catch(123)).toThrow();
     });
 
