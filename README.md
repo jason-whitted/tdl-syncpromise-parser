@@ -23,10 +23,10 @@ Utilize documentation and unit tests to help you create the functions.
 ### Documentation
 Read the docs!  You don't have to fully comprehend them initially, but it is good to get familiar with the documentation.
 
+- [SyncPromise](docs/SyncPromise.md)
 - [Parse.number](docs/Parse.number.md)
 - [Parse.string](docs/Parse.string.md)
 - [createExecutionPlan](docs/createExecutionPlan.md)
-
 
 ### Run Unit Tests
 ```
