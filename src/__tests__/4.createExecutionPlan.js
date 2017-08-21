@@ -18,6 +18,8 @@ describe('createExecutionPlan', () => {
 
     it('should throw an error if no executor is provided', () => {
       expect(() => createExecutionPlan()).toThrow();
+      expect(() => createExecutionPlan("abc")).toThrow();
+      expect(() => createExecutionPlan(123)).toThrow();
     });
 
     it('should NOT throw an error if an executor is provided', () => {
@@ -77,6 +79,8 @@ describe('createExecutionPlan', () => {
   describe('then', () => {
     it('should throw an error if an onResolved function is NOT supplied', () => {
       expect(() => createExecutionPlan(value => resolve(value)).then()).toThrow();
+      expect(() => createExecutionPlan(value => resolve(value)).then("abc")).toThrow();
+      expect(() => createExecutionPlan(value => resolve(value)).then(123)).toThrow();
     });
 
     it('should NOT throw an error if an onResolved function is supplied', () => {
@@ -97,6 +101,8 @@ describe('createExecutionPlan', () => {
   describe('catch', () => {
     it('should throw an error if an onRejected function is NOT supplied', () => {
       expect(() => createExecutionPlan(value => resolve(value)).catch()).toThrow();
+      expect(() => createExecutionPlan(value => resolve(value)).catch("abc")).toThrow();
+      expect(() => createExecutionPlan(value => resolve(value)).catch(123)).toThrow();
     });
 
     it('should NOT throw an error if an onRejected function is supplied', () => {
