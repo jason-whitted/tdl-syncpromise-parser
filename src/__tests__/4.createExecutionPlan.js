@@ -24,7 +24,7 @@ describe('createExecutionPlan', () => {
       expect(() => createExecutionPlan("abc")).toThrow();
     });
 
-    it('should throw an error if an number is provided as the executor', () => {
+    it('should throw an error if a number is provided as the executor', () => {
       expect(() => createExecutionPlan(123)).toThrow();
     });
 
