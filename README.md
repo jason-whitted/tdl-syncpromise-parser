@@ -7,7 +7,7 @@ A thorough set of unit tests have been created for you.  Now you just need to ma
 ```
 git clone https://github.com/jason-whitted/tdl-syncpromise-parser
 cd tdl-syncpromise-parser
-npm Installation
+npm install
 ```
 
 ## Directions

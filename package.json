@@ -1,6 +1,6 @@
 {
   "name": "tdl-syncpromise-parser",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Test-Driven Learning: SyncPromise Parser",
   "main": "index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "jsdom": "^11.1.0",
     "mocha": "^3.5.0",
     "moment": "^2.18.1",
-    "nyc": "^11.1.0"
+    "nyc": "^11.1.0",
+    "react": "^15.6.1"
   }
 }
