@@ -53,4 +53,4 @@ const parser = Parse.string({ minLength: 4 })
   .value();
 const result = parser("abc123"); // 'ABC123'
 ```
-After configuration but before parsing, the parser should support [SyncPromise](SyncPromise.md) functions.  For more details read the [createExecutionPlan](createExexcutionPlan.md) documentation.
+After configuration but before parsing, the parser should support [SyncPromise](SyncPromise.md) functions.  For more details read the [createExecutionPlan](createExecutionPlan.md) documentation.

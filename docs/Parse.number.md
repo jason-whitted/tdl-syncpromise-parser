@@ -58,4 +58,4 @@ const parser = Parse.number()
   .value();
 const result = parser("123"); // 246
 ```
-After configuration but before parsing, the parser should support [SyncPromise](SyncPromise.md) functions.  For more details read the [createExecutionPlan](createExexcutionPlan.md) documentation.
+After configuration but before parsing, the parser should support [SyncPromise](SyncPromise.md) functions.  For more details read the [createExecutionPlan](createExecutionPlan.md) documentation.
