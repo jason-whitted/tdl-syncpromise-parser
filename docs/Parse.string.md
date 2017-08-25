@@ -37,7 +37,7 @@ const fail = parser("abc"); // status=rejected, value='Too Short'
 ```
 
 #### Resolve/Reject
-- `'Required'` - If the value is `null`, `undefined` or empty string the SyncPromise will reject with 'Required' or resolve with `NaN` depending on if it is configured as required.
+- `'Required'` - If the value is `null`, `undefined` or empty string the SyncPromise will reject with 'Required' or resolve with `""` depending on if it is configured as required.
 - `'Invalid'` - If the value is not a string the SyncPromise should reject as 'Invalid'.
 - `'Too Short'` - If the length of value is less than the configured minLength the SyncPromise should reject as 'Too Short'.
 - `'Too High'` - If the length of value is more than the configured maxLength the SyncPromise should reject as 'Too Long'.
